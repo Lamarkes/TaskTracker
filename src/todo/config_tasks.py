@@ -1,9 +1,15 @@
 import json
 import uuid
 from datetime import date
+from pathlib import Path
 
-FILE = "files/tasks.json"
+BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
+FILE = BASE_DIR /"files"/ "tasks.json"
+
+if not FILE.exists():
+    FILE.parent.mkdir(parents=True, exist_ok=True)
+    FILE.write_text('{"tasks": []}', encoding="utf-8")
 
 def load_tasks():
     try:

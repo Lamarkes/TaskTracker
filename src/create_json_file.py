@@ -7,5 +7,4 @@ def json_file_config():
 
         with open('files/tasks.json', 'w'):
             print('The tasks can be created!')
-    else:
-        print('Your tasks list already exists!')
+

@@ -42,15 +42,20 @@ def mark_a_task_as_done(id_task):
     data = load_tasks()
 
     for task in data['tasks']:
-        print(task['id'])
         if task['id'] == id_task:
             task['status'] = 'DONE'
             task['updatedAt'] = str(date.today())
             print("Task complete: ", task["title_task"])
 
     save_tasks(data)
-    print('Task complete!')
 
+def mark_a_task_as_progress(id_task):
+    data = load_tasks()
 
+    for task in data['tasks']:
+        if task['id'] == id_task:
+            task['status'] = 'PROGRESS'
+            task['updatedAt'] = str(date.today())
+            print('Your task is in Progress.', task["title_task"])
 
-    # TODO -> IMPLEMENTAR NOVAS FEATURES
+    save_tasks(data)

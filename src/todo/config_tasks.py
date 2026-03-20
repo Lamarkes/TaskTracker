@@ -1,5 +1,5 @@
 import json
-import uuid
+from itertools import count
 from datetime import date
 from pathlib import Path
 
@@ -10,6 +10,13 @@ FILE = BASE_DIR /"files"/ "tasks.json"
 if not FILE.exists():
     FILE.parent.mkdir(parents=True, exist_ok=True)
     FILE.write_text('{"tasks": []}', encoding="utf-8")
+
+counter = count()
+
+def generate_id(data):
+
+    return len(data["tasks"]) +1
+
 
 def load_tasks():
     try:
@@ -25,7 +32,8 @@ def save_tasks(data):
 def add_tasks(title, description):
 
     data = load_tasks()
-    task = {'id': str(uuid.uuid4()),
+
+    task = {'id': int(generate_id(data)),
         'title_task': title,
         'description': description,
         'status': 'TODO',

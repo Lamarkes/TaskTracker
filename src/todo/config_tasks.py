@@ -33,7 +33,7 @@ def add_tasks(title, description):
 
     data = load_tasks()
 
-    task = {'id': int(generate_id(data)),
+    task = {'id': generate_id(data),
         'title_task': title,
         'description': description,
         'status': 'TODO',

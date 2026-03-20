@@ -13,24 +13,24 @@ def main():
 
     subparsers.add_parser("list")
 
-    done = subparsers.add_parser("done")
-    done.add_argument("id")
+    done = subparsers.add_parser("mark-done")
+    done.add_argument("id", type=int)
 
-    progress = subparsers.add_parser("progress")
-    progress.add_argument("id")
+    progress = subparsers.add_parser("mark-in-progress")
+    progress.add_argument("id", type=int)
 
     delete = subparsers.add_parser("del")
-    delete.add_argument("id")
+    delete.add_argument("id", type=int)
 
     args = parser.parse_args()
 
     if args.command == "add":
         config_tasks.add_tasks(args.title, args.description)
 
-    elif args.command == "done":
+    elif args.command == "mark-done":
         config_tasks.mark_a_task_as_done(args.id)
 
-    elif args.command == "progress":
+    elif args.command == "mark-in-progress":
         config_tasks.mark_a_task_as_progress(args.id)
 
     elif args.command == "list":

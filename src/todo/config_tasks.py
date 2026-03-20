@@ -27,7 +27,7 @@ def add_tasks(title, description):
     data = load_tasks()
     task = {'id': str(uuid.uuid4()),
         'title_task': title,
-        'Description': description,
+        'description': description,
         'status': 'TODO',
         'createdAt': str(date.today()),
         'updatedAt': None}
@@ -59,3 +59,14 @@ def mark_a_task_as_progress(id_task):
             print('Your task is in Progress.', task["title_task"])
 
     save_tasks(data)
+
+
+def list_all_tasks():
+    data = load_tasks()
+
+    for task in data['tasks']:
+        print('-' * 8)
+        print('Task: ', task['title_task'])
+        print('Description: ', task['description'])
+        print('Status: ', task['status'])
+        print('Created At: ', task['createdAt'])

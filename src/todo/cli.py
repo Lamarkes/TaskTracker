@@ -9,11 +9,9 @@ def main():
     add = subparsers.add_parser("add")
     add.add_argument("title")
     add.add_argument("description")
-    add.add_argument("progress")
 
 
     subparsers.add_parser("list")
-
 
     done = subparsers.add_parser("done")
     done.add_argument("id")
@@ -34,3 +32,6 @@ def main():
 
     elif args.command == "progress":
         config_tasks.mark_a_task_as_progress(args.id)
+
+    elif args.command == "list":
+        config_tasks.list_all_tasks()

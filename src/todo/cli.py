@@ -13,6 +13,10 @@ def main():
 
     subparsers.add_parser("list")
 
+    update = subparsers.add_parser("update")
+    update.add_argument("id", type=int)
+    update.add_argument("new_title")
+
     done = subparsers.add_parser("mark-done")
     done.add_argument("id", type=int)
 
@@ -35,3 +39,6 @@ def main():
 
     elif args.command == "list":
         config_tasks.list_all_tasks()
+
+    elif args.command == "update":
+        config_tasks.update_a_task(args.id, args.new_title)

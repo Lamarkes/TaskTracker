@@ -19,15 +19,14 @@ def generate_id(data):
 
 
 def load_tasks():
-    try:
-        with open(FILE, 'r', encoding="utf-8") as file:
-            return json.load(file)
-    except (FileNotFoundError, json.JSONDecodeError):
-        return {'tasks': []}
+
+    with open(FILE, 'r', encoding="utf-8") as file:
+        return json.load(file)
+
 
 def save_tasks(data):
     with open(FILE, 'w', encoding="utf-8") as file:
-        json.dump(data, file,indent=4, ensure_ascii=False)
+        json.dump(data, file, indent=4, ensure_ascii=False)
 
 def add_tasks(title, description):
 
@@ -44,6 +43,18 @@ def add_tasks(title, description):
 
     print('Task added!')
 
+
+def update_a_task(id_task, new_title):
+
+    data = load_tasks()
+
+    for task in data['tasks']:
+        if id_task == task['id']:
+            task['title_task'] = new_title
+            task['updatedAt'] = str(date.today())
+            print('The task has been updated!')
+
+    save_tasks(data)
 
 def mark_a_task_as_done(id_task):
 

@@ -3,7 +3,7 @@ from todo import config_tasks
 
 
 def main():
-    parser = argparse.ArgumentParser(prog="todo")
+    parser = argparse.ArgumentParser(prog="task-cli")
     subparsers = parser.add_subparsers(dest="command")
 
     add = subparsers.add_parser("add")
@@ -23,7 +23,7 @@ def main():
     progress = subparsers.add_parser("mark-in-progress")
     progress.add_argument("id", type=int)
 
-    delete = subparsers.add_parser("del")
+    delete = subparsers.add_parser("delete")
     delete.add_argument("id", type=int)
 
     args = parser.parse_args()
@@ -42,3 +42,6 @@ def main():
 
     elif args.command == "update":
         config_tasks.update_a_task(args.id, args.new_title)
+
+    elif args.command == "delete":
+        config_tasks.delete_task(args.id)

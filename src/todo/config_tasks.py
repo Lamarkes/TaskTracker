@@ -1,5 +1,4 @@
 import json
-from itertools import count
 from datetime import date
 from pathlib import Path
 
@@ -11,11 +10,13 @@ if not FILE.exists():
     FILE.parent.mkdir(parents=True, exist_ok=True)
     FILE.write_text('{"tasks": []}', encoding="utf-8")
 
-counter = count()
+
 
 def generate_id(data):
+    if not data["tasks"]:
+        return 1
 
-    return len(data["tasks"]) +1
+    return max(task["id"] for task in data["tasks"]) + 1
 
 
 def load_tasks():
@@ -89,3 +90,13 @@ def list_all_tasks():
         print('Description: ', task['description'])
         print('Status: ', task['status'])
         print('Created At: ', task['createdAt'])
+
+def delete_task(task_id):
+    data = load_tasks()
+
+
+    for task in data['tasks']:
+        if task['id'] == task_id:
+            data['tasks'].remove(task)
+
+    save_tasks(data)
